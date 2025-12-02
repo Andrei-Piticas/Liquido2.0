@@ -7,7 +7,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "deploy": "npm run build && git -C dist init && git -C dist add -A && git -C dist commit -m 'Deploy' && git -C dist push -f https://github.com/Andrei-Piticas/Liquido2.0.git HEAD:gh-pages"
   },
   "devDependencies": {
     "vite": "^5.0.0",
