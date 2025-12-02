@@ -87,5 +87,14 @@ export class Router {
     if (this.currentPage.mount) {
       this.currentPage.mount();
     }
+
+    // Mount navbar if present
+    const navbar = appContainer.querySelector('.navbar');
+    if (navbar) {
+      const navBarComponent = new (require('./components/common/NavBar.js').NavBar)(this.app);
+      if (navBarComponent.mount) {
+        navBarComponent.mount();
+      }
+    }
   }
 }

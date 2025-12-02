@@ -30,6 +30,12 @@ export class LeaderboardPage {
   }
 
   mount() {
+    // Mount navbar
+    const navBar = new (require('../common/NavBar.js').NavBar)(this.app);
+    if (navBar.mount) {
+      navBar.mount();
+    }
+
     const tabs = document.querySelectorAll('.tab-btn');
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {

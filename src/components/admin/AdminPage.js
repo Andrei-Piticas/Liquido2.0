@@ -132,10 +132,16 @@ export class AdminPage {
   }
 
   mount() {
+    // Mount navbar
+    const navBar = new (require('../common/NavBar.js').NavBar)(this.app);
+    if (navBar.mount) {
+      navBar.mount();
+    }
+
     window.app.approveUser = (userId) => {
       const result = this.app.authManager.approveUser(userId);
       if (result.success) {
-        this.app.notificationManager.success('User approved!');
+        this.app.notificationManager.success('Utente approvato!');
         this.app.router.handleRoute();
       } else {
         this.app.notificationManager.error(result.error);
@@ -143,10 +149,10 @@ export class AdminPage {
     };
 
     window.app.rejectUser = (userId) => {
-      if (confirm('Are you sure you want to reject this user?')) {
+      if (confirm('Sei sicuro di voler rifiutare questo utente?')) {
         const result = this.app.authManager.rejectUser(userId);
         if (result.success) {
-          this.app.notificationManager.success('User rejected');
+          this.app.notificationManager.success('Utente rifiutato');
           this.app.router.handleRoute();
         } else {
           this.app.notificationManager.error(result.error);
@@ -155,10 +161,10 @@ export class AdminPage {
     };
 
     window.app.deleteEntry = (entryId) => {
-      if (confirm('Are you sure you want to delete this entry? This will recalculate all statistics.')) {
+      if (confirm('Sei sicuro di voler eliminare questa bevuta? Le statistiche verranno ricalcolate.')) {
         const result = this.app.drinkManager.deleteEntry(entryId);
         if (result.success) {
-          this.app.notificationManager.success('Entry deleted');
+          this.app.notificationManager.success('Bevuta eliminata');
           this.app.router.handleRoute();
         } else {
           this.app.notificationManager.error(result.error);

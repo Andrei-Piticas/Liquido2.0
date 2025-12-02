@@ -125,6 +125,12 @@ export class ProfilePage {
   }
 
   mount() {
+    // Mount navbar
+    const navBar = new (require('../common/NavBar.js').NavBar)(this.app);
+    if (navBar.mount) {
+      navBar.mount();
+    }
+
     // Add export functionality to window
     window.app.exportData = () => {
       const data = this.app.dataManager.export();
@@ -136,7 +142,7 @@ export class ProfilePage {
       a.click();
       URL.revokeObjectURL(url);
       document.getElementById('export-modal').style.display = 'none';
-      this.app.notificationManager.success('Data exported successfully!');
+      this.app.notificationManager.success('Dati esportati con successo!');
     };
   }
 }

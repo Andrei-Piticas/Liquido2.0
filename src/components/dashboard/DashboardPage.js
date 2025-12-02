@@ -50,6 +50,12 @@ export class DashboardPage {
   }
 
   mount() {
+    // Mount navbar
+    const navBar = new (require('../common/NavBar.js').NavBar)(this.app);
+    if (navBar.mount) {
+      navBar.mount();
+    }
+
     // Mount sub-components
     const quickAddSection = document.getElementById('quick-add-section');
     const quickAdd = new QuickAddDrink(this.app);
